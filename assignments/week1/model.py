@@ -18,7 +18,7 @@ class LinearRegression:
         # raise NotImplementedError()
         """
         Fit a closed form linear regression.
-        
+
         Parameters:
             X (np.ndarray): The design matrix.
             y (np.ndarray): The true values.
@@ -35,10 +35,10 @@ class LinearRegression:
         # raise NotImplementedError()
         """
         Makes prediction with the linear regression model.
-        
+
         Parameters:
             X (np.ndarray): The input data.
-        
+
         Returns:
             pred (np.ndarray): The predicted values.
 
