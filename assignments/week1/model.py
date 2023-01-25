@@ -10,12 +10,12 @@ class LinearRegression:
     b: float
 
     def __init__(self):
-        #raise NotImplementedError()
+        # raise NotImplementedError()
         self.w = np.zeros(1)
         self.b = 0
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        #raise NotImplementedError()
+        # raise NotImplementedError()
         """
         Fit a closed form linear regression.
         
@@ -26,13 +26,13 @@ class LinearRegression:
         Returns:
             None.
         """
-        
+
         weights = np.linalg.inv(X.T @ X) @ X @ y
         self.w = weights[1:]
         self.b = weights[0]
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-        #raise NotImplementedError()
+        # raise NotImplementedError()
         """
         Makes prediction with the linear regression model.
         
@@ -46,6 +46,7 @@ class LinearRegression:
         pred = np.append(self.b, self.w) @ X
         return pred
 
+
 class GradientDescentLinearRegression(LinearRegression):
     """
     A linear regression model that uses gradient descent to fit the model.
@@ -54,7 +55,7 @@ class GradientDescentLinearRegression(LinearRegression):
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
-        #raise NotImplementedError()
+        # raise NotImplementedError()
         """
         Fit a linear regression model using gradient descent.
 
@@ -87,6 +88,6 @@ class GradientDescentLinearRegression(LinearRegression):
             np.ndarray: The predicted output.
 
         """
-        #raise NotImplementedError()
+        # raise NotImplementedError()
         pred = self.w @ X + self.b
         return pred
