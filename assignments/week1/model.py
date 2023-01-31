@@ -43,7 +43,7 @@ class LinearRegression:
             pred (np.ndarray): The predicted values.
 
         """
-        pred = X @ np.append(self.b, self.w)
+        pred = np.append(self.b, self.w) @ X
         return pred
 
 
@@ -89,5 +89,5 @@ class GradientDescentLinearRegression(LinearRegression):
 
         """
         # raise NotImplementedError()
-        pred = X @ self.w + self.b
+        pred = self.w @ X + self.b
         return pred
