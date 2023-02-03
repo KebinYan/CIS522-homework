@@ -30,14 +30,13 @@ class MLP(torch.nn.Module):
 
         self.layers = torch.nn.ModuleList()
         for i in range(hidden_count):
-          output_size = hidden_size
-          self.layers += [torch.nn.Linear(input_size, output_size, bias = True)]
-          input_size = output_size
-        self.out = torch.nn.Linear(input_size, num_classes, bias = True)
+            output_size = hidden_size
+            self.layers += [torch.nn.Linear(input_size, output_size, bias=True)]
+            input_size = output_size
+        self.out = torch.nn.Linear(input_size, num_classes, bias=True)
         self.dropout = torch.nn.Dropout(0.1)
 
-
-        #print("hidden_layer: ", hidden_count, "hidden_size: ", hidden_size, "initializer: ", initializer)
+        # print("hidden_layer: ", hidden_count, "hidden_size: ", hidden_size, "initializer: ", initializer)
         ...
 
     def forward(self, x):
@@ -53,10 +52,10 @@ class MLP(torch.nn.Module):
         x = x.view(x.shape[0], -1)
 
         for layer in self.layers:
-            #self.initializer(layer.weight)
+            # self.initializer(layer.weight)
             x = self.activation(layer(x))
-            #x = self.dropout(x)
+            # x = self.dropout(x)
 
         x = self.out(x)
-        return torch.nn.Softmax(dim = 1)(x)
+        return torch.nn.Softmax(dim=1)(x)
         ...
