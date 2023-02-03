@@ -1,7 +1,9 @@
 from typing import Callable
+import torch
+import numpy as np
 
 
-class MLP:
+class MLP(torch.nn.Module):
     def __init__(
         self,
         input_size: int,
@@ -21,6 +23,21 @@ class MLP:
             activation: The activation function to use in the hidden layer.
             initializer: The initializer to use for the weights.
         """
+        torch.manual_seed(522)
+        super(MLP, self).__init__()
+        self.activation = activation
+        self.initializer = initializer
+
+        self.layers = torch.nn.ModuleList()
+        for i in range(hidden_count):
+          output_size = hidden_size
+          self.layers += [torch.nn.Linear(input_size, output_size, bias = True)]
+          input_size = output_size
+        self.out = torch.nn.Linear(input_size, num_classes, bias = True)
+        self.dropout = torch.nn.Dropout(0.1)
+
+
+        #print("hidden_layer: ", hidden_count, "hidden_size: ", hidden_size, "initializer: ", initializer)
         ...
 
     def forward(self, x):
@@ -33,4 +50,13 @@ class MLP:
         Returns:
             The output of the network.
         """
+        x = x.view(x.shape[0], -1)
+
+        for layer in self.layers:
+            #self.initializer(layer.weight)
+            x = self.activation(layer(x))
+            #x = self.dropout(x)
+
+        x = self.out(x)
+        return torch.nn.Softmax(dim = 1)(x)
         ...
