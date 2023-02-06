@@ -53,7 +53,7 @@ class MLP(torch.nn.Module):
         x = x.view(x.shape[0], -1)
 
         for layer in self.layers:
-            # self.initializer(layer.weight)
+            #self.initializer(layer.weight)
             x = self.activation(layer(x))
             # x = self.dropout(x)
 
