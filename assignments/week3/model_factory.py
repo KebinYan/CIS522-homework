@@ -17,9 +17,9 @@ def create_model(input_dim: int, output_dim: int) -> MLP:
     """
     return MLP(
         input_dim,
-        800,
+        512,
         output_dim,
-        1,
+        2,
         torch.nn.LeakyReLU(),
         torch.nn.init.eye_,
     )

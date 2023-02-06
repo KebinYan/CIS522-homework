@@ -37,7 +37,7 @@ class MLP(torch.nn.Module):
             self.layers += [torch.nn.Linear(input_size, output_size, bias=True)]
             input_size = output_size
         self.out = torch.nn.Linear(input_size, num_classes, bias=True)
-        dropout = 0
+        dropout = 0.4
         self.dropout = torch.nn.Dropout(dropout)
 
         print(
@@ -65,7 +65,7 @@ class MLP(torch.nn.Module):
         x = x.view(x.shape[0], -1)
 
         for layer in self.layers:
-            self.initializer(layer.weight)
+            # self.initializer(layer.weight)
             x = self.activation(layer(x))
             x = self.dropout(x)
 
