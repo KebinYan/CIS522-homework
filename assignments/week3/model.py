@@ -1,10 +1,12 @@
 import torch
 from typing import Callable
-import torch
-import numpy as np
 
 
 class MLP(torch.nn.Module):
+    """
+    Create a MLP NN
+    """
+
     def __init__(
         self,
         input_size: int,
@@ -35,12 +37,22 @@ class MLP(torch.nn.Module):
             self.layers += [torch.nn.Linear(input_size, output_size, bias=True)]
             input_size = output_size
         self.out = torch.nn.Linear(input_size, num_classes, bias=True)
-        self.dropout = torch.nn.Dropout(0.1)
+        dropout = 0
+        self.dropout = torch.nn.Dropout(dropout)
 
-        # print("hidden_layer: ", hidden_count, "hidden_size: ", hidden_size, "initializer: ", initializer)
+        print(
+            "hidden_layer: ",
+            hidden_count,
+            "hidden_size: ",
+            hidden_size,
+            "initializer: ",
+            initializer,
+            "dropout: ",
+            dropout,
+        )
         ...
 
-    def forward(self, x):
+    def forward(self, x: torch.tensor) -> torch.tensor:
         """
         Forward pass of the network.
 
@@ -48,15 +60,15 @@ class MLP(torch.nn.Module):
             x: The input data.
 
         Returns:
-            The output of the network.
+           The output of the network.
         """
         x = x.view(x.shape[0], -1)
 
         for layer in self.layers:
             # self.initializer(layer.weight)
             x = self.activation(layer(x))
-            # x = self.dropout(x)
+            x = self.dropout(x)
 
         x = self.out(x)
-        return torch.nn.Softmax(dim=1)(x)
+        return x
         ...
