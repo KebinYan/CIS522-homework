@@ -16,7 +16,7 @@ def create_model(input_dim: int, output_dim: int) -> MLP:
 
     """
     return MLP(
-        input_dim, 520, output_dim, 1, torch.nn.ReLU(), torch.nn.init.xavier_uniform_
+        input_dim, 257, output_dim, 2, torch.nn.ReLU(), torch.nn.init.xavier_uniform_
     )
 
     # 1 hidden layer, optimal size = 520, accuracy = 97.85%
