@@ -37,7 +37,7 @@ class MLP(torch.nn.Module):
             self.layers += [torch.nn.Linear(input_size, output_size, bias=True)]
             input_size = output_size
         self.out = torch.nn.Linear(input_size, num_classes, bias=True)
-        dropout = 0.2
+        dropout = 0.1
         self.dropout = torch.nn.Dropout(dropout)
         ...
 
