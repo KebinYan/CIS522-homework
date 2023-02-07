@@ -39,17 +39,6 @@ class MLP(torch.nn.Module):
         self.out = torch.nn.Linear(input_size, num_classes, bias=True)
         dropout = 0.4
         self.dropout = torch.nn.Dropout(dropout)
-
-        print(
-            "hidden_layer: ",
-            hidden_count,
-            "hidden_size: ",
-            hidden_size,
-            "initializer: ",
-            initializer,
-            "dropout: ",
-            dropout,
-        )
         ...
 
     def forward(self, x: torch.tensor) -> torch.tensor:
