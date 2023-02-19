@@ -161,7 +161,6 @@ def main() -> None:
     criterion = torch.nn.CrossEntropyLoss()
     # Create the learning rate scheduler:
     learning_rate_scheduler = CustomLRScheduler(optimizer, **CONFIG.lrs_kwargs)
-    # Train the model:
     train(
         model,
         train_loader,
