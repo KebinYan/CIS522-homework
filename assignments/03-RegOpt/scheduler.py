@@ -9,7 +9,11 @@ class CustomLRScheduler(_LRScheduler):
     """
 
     def __init__(
-        self, optimizer: torch.optim.Optimizer, lr_lambda: object, last_epoch=-1
+        self,
+        optimizer: torch.optim.Optimizer,
+        num_epoch: int,
+        lr_lambdas: object,
+        last_epoch=-1,
     ) -> None:
         """
         Create a new scheduler.
@@ -20,7 +24,8 @@ class CustomLRScheduler(_LRScheduler):
         """
         # ... Your Code Here ...
         self.optimizer = optimizer
-        self.lr_lambdas = [lr_lambda] * len(optimizer.param_groups)
+        self.num_epoch = num_epoch
+        self.lr_lambdas = [lr_lambdas] * len(optimizer.param_groups)
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
     def get_lr(self) -> List[float]:
@@ -38,10 +43,8 @@ class CustomLRScheduler(_LRScheduler):
             for lmbda in self.lr_lambdas:
                 for i in range(self.last_epoch - 1):
                     curr_lr += lmbda(i) / (self.last_epoch - i)
-                curr_lr += lmbda(self.last_epoch)
             if self.last_epoch > 0 and curr_lr > 0:
                 lrs.append(base_lr * curr_lr / self.last_epoch)
             else:
                 lrs.append(base_lr)
-
         return lrs
