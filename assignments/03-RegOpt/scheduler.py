@@ -38,6 +38,7 @@ class CustomLRScheduler(_LRScheduler):
             for lmbda in self.lr_lambdas:
                 for i in range(self.last_epoch - 1):
                     curr_lr += lmbda(i) / (self.last_epoch - i)
+                curr_lr += lmbda(self.last_epoch)
             if self.last_epoch > 0 and curr_lr > 0:
                 lrs.append(base_lr * curr_lr / self.last_epoch)
             else:
