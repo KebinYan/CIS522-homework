@@ -8,9 +8,9 @@ class Model(torch.nn.Module):
 
     def __init__(self, num_channels: int, num_classes: int) -> None:
         super(Model, self).__init__()
-        self.conv1 = torch.nn.Conv2d(3, 16, 4, padding=1)
+        self.conv1 = torch.nn.Conv2d(3, 15, 3, padding=1)
         self.pool = torch.nn.MaxPool2d(2, 2)
-        self.fc1 = torch.nn.Linear(16 * 15 * 15, 64)
+        self.fc1 = torch.nn.Linear(15 * 16 * 16, 64)
         self.fc2 = torch.nn.Linear(64, 10)
         self.flatten = torch.nn.Flatten(start_dim=1)
 
