@@ -19,9 +19,9 @@ class Model(torch.nn.Module):
         construct model
         """
         x = self.conv1(x)
+        x = torch.nn.functional.relu(x)
         x = self.pool(x)
         x = self.bn1(x)
-        x = torch.nn.functional.relu(x)
         x = self.flatten(x)
         x = self.fc1(x)
         return x
