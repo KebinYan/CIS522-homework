@@ -10,8 +10,8 @@ class Model(torch.nn.Module):
         super(Model, self).__init__()
         self.conv1 = torch.nn.Conv2d(3, 8, 3, padding=1)
         self.bn1 = torch.nn.BatchNorm2d(8)
-        self.pool = torch.nn.MaxPool2d(4, 4)
-        self.fc1 = torch.nn.Linear(8 * 8 * 8, 10)
+        self.pool = torch.nn.MaxPool2d(5, 5)
+        self.fc1 = torch.nn.Linear(8 * 6 * 6, 10)
         self.flatten = torch.nn.Flatten(start_dim=1)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
