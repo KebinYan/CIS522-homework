@@ -27,7 +27,7 @@ class LinearRegression:
             None.
         """
 
-        weights = np.linalg.inv(X.T @ X) @ X @ y
+        weights = np.linalg.inv(X.T @ X) @ X.T @ y
         self.w = weights[1:]
         self.b = weights[0]
 
@@ -43,7 +43,7 @@ class LinearRegression:
             pred (np.ndarray): The predicted values.
 
         """
-        pred = np.append(self.b, self.w) @ X
+        pred = np.append(self.b, self.w) @ X.T
         return pred
 
 
